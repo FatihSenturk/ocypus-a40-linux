@@ -1,0 +1,14 @@
+#!/bin/sh
+set -eu
+case "$1" in
+    remove|purge)
+        if [ -d /run/systemd/system ]; then
+            systemctl disable ocypus-a40.service 2>/dev/null || true
+            systemctl daemon-reload
+        fi
+        if [ -d /run/udev ]; then
+            udevadm control --reload-rules || true
+        fi
+        # Retain the reserved system account and migration backup.
+        ;;
+esac

@@ -1,0 +1,22 @@
+[Unit]
+Description=Ocypus Iota A40 CPU temperature display
+After=systemd-udevd.service
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+User=ocypus-a40
+Group=ocypus-a40
+EnvironmentFile=-/etc/default/ocypus-a40
+ExecStart=/usr/bin/python3 -u /usr/lib/ocypus-a40/ocypus_a40.py on
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+RestrictSUIDSGID=yes
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,26 @@
+name: Check and build
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - name: Unit tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Shell syntax and lint
+        run: |
+          for script in install.sh build-deb.sh; do bash -n "$script"; done
+          for script in packaging/postinst packaging/prerm packaging/postrm; do sh -n "$script"; done
+          shellcheck install.sh build-deb.sh packaging/postinst packaging/prerm packaging/postrm
+      - name: Build package
+        run: bash build-deb.sh
+      - name: Inspect package
+        run: |
+          dpkg-deb --info dist/*.deb
+          dpkg-deb --contents dist/*.deb
+      - uses: actions/upload-artifact@v7
+        with:
+          name: ocypus-a40-deb
+          path: dist/*.deb

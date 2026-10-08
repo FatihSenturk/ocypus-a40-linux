@@ -1,0 +1,9 @@
+#!/bin/sh
+set -eu
+case "$1" in
+    remove|upgrade|deconfigure)
+        if [ -d /run/systemd/system ]; then
+            systemctl stop ocypus-a40.service || true
+        fi
+        ;;
+esac

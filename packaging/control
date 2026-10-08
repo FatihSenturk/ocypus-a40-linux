@@ -1,0 +1,12 @@
+Package: ocypus-a40
+Version: 1.0.0
+Section: utils
+Priority: optional
+Architecture: all
+Maintainer: FatihSenturk <11239001+FatihSenturk@users.noreply.github.com>
+Depends: python3 (>= 3.9), python3-hid, python3-psutil, systemd, udev, adduser
+Homepage: https://github.com/FatihSenturk/ocypus-a40-linux
+Description: CPU temperature display for the Ocypus Iota A40 cooler
+ Community Linux driver with automatic CPU sensor selection, scoped USB
+ permissions and an automatically started systemd service.
+ Tested on Ubuntu 24.04 with an AMD CPU and the Iota A40 USB display.

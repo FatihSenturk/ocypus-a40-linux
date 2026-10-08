@@ -1,0 +1,33 @@
+#!/bin/sh
+set -eu
+if [ "$1" = configure ]; then
+    if ! getent group ocypus-a40 >/dev/null; then
+        addgroup --system ocypus-a40
+    fi
+    if ! id ocypus-a40 >/dev/null 2>&1; then
+        adduser --system --ingroup ocypus-a40 --no-create-home --home /nonexistent --shell /usr/sbin/nologin ocypus-a40
+    fi
+    # Migrate the initial manual installer, preserving its service for reference.
+    migrated=no
+    legacy=/etc/systemd/system/ocypus-a40.service
+    if [ -f "$legacy" ] && grep -qF 'ExecStart=/usr/bin/python3 -u /opt/ocypus-a40/ocypus-control.py on' "$legacy"; then
+        mkdir -p /var/lib/ocypus-a40/legacy
+        systemctl disable --now ocypus-a40.service 2>/dev/null || true
+        mv "$legacy" /var/lib/ocypus-a40/legacy/ocypus-a40.service
+        migrated=yes
+    fi
+    if [ -d /run/udev ]; then
+        udevadm control --reload-rules
+        udevadm trigger --subsystem-match=usb --attr-match=idVendor=1a2c --attr-match=idProduct=434d --action=change
+        udevadm trigger --subsystem-match=hidraw --action=change
+        udevadm settle
+    fi
+    if [ -d /run/systemd/system ]; then
+        systemctl daemon-reload
+        if [ -z "${2:-}" ] || [ "$migrated" = yes ]; then
+            systemctl enable --now ocypus-a40.service
+        elif systemctl is-enabled --quiet ocypus-a40.service; then
+            systemctl restart ocypus-a40.service
+        fi
+    fi
+fi

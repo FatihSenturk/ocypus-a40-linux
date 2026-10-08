@@ -1,0 +1,9 @@
+# Restart with: sudo systemctl restart ocypus-a40
+# Sensor choices: auto, k10temp (AMD), coretemp (Intel).
+OCYPUS_SENSOR=auto
+# Exact label from 'ocypus-a40 sensors', or auto.
+OCYPUS_LABEL=auto
+# c = Celsius, f = Fahrenheit. Display supports at most two digits (99).
+OCYPUS_UNIT=c
+# Refresh interval in seconds, 0.2 to 60.
+OCYPUS_RATE=1

@@ -1,0 +1,5 @@
+# Debian/Ubuntu python3-hid uses libusb.
+SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTR{idVendor}=="1a2c", ATTR{idProduct}=="434d", GROUP="ocypus-a40", MODE="0660"
+# For hidraw backends, match identity and interface on their separate parents.
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1a2c", ATTRS{idProduct}=="434d", ENV{OCYPUS_A40}="1"
+SUBSYSTEM=="hidraw", ENV{OCYPUS_A40}=="1", ATTRS{bInterfaceNumber}=="01", GROUP="ocypus-a40", MODE="0660"
