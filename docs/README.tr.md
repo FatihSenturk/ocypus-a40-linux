@@ -1,5 +1,9 @@
 # Ocypus Iota A40 — Linux kurulumu
 
+**Bağımsız topluluk projesidir. Ocypus ile bağlantılı değildir ve Ocypus tarafından onaylanmamıştır.**
+Ürün adı yalnızca uyumlu donanımı belirtir. Üreticinin kapalı kaynak yazılımı,
+firmware'i veya marka görselleri bu projede dağıtılmaz.
+
 Soğutucunun ekranında işlemci sıcaklığını gösterir. Ubuntu/Debian üzerinde tek
 komutla kurulur; işlemci sensörünü otomatik seçer ve bilgisayar açıldığında çalışır.
 
@@ -13,8 +17,7 @@ curl -fsSL https://raw.githubusercontent.com/FatihSenturk/ocypus-a40-linux/v1.0.
 `.deb` paketini oluşturur, gerekli paketleri apt ile kurar ve servisi başlatır.
 `curl` yoksa önce `sudo apt install curl` çalıştır.
 
-Alternatif: [Releases sayfasından](https://github.com/FatihSenturk/ocypus-a40-linux/releases/latest)
-`ocypus-a40_1.0.0_all.deb` dosyasını indir. İndirdiğin klasörde:
+Alternatif: [`ocypus-a40_1.0.0_all.deb` paketini indir](https://raw.githubusercontent.com/FatihSenturk/ocypus-a40-linux/v1.0.0/packages/ocypus-a40_1.0.0_all.deb). İndirdiğin klasörde:
 
 ```bash
 sudo apt install ./ocypus-a40_1.0.0_all.deb

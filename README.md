@@ -1,9 +1,13 @@
 # Ocypus Iota A40 — Linux temperature display
 
+**Independent community project. Not affiliated with or endorsed by Ocypus.**
+The product name identifies compatible hardware. This project does not distribute
+Ocypus's proprietary software, firmware or brand artwork.
+
 Show your CPU temperature on the Iota A40's built-in display with one install command.
 Runs automatically at boot, chooses an AMD or Intel CPU sensor, and needs no desktop app.
 
-[Türkçe kullanım](docs/README.tr.md) · [Download the .deb package](https://github.com/FatihSenturk/ocypus-a40-linux/releases/latest)
+[Türkçe kullanım](docs/README.tr.md) · [Download the .deb package](https://raw.githubusercontent.com/FatihSenturk/ocypus-a40-linux/v1.0.0/packages/ocypus-a40_1.0.0_all.deb) · [Release notes](https://github.com/FatihSenturk/ocypus-a40-linux/releases/latest)
 
 ## Install
 
@@ -18,8 +22,7 @@ The installer downloads the tagged source, builds a small Debian package and use
 It starts the display service and enables it at boot. If curl is missing, install
 it with `sudo apt install curl` first.
 
-Prefer a downloaded package? Get `ocypus-a40_1.0.0_all.deb` from
-[Releases](https://github.com/FatihSenturk/ocypus-a40-linux/releases/latest), then run
+Prefer a downloaded package? [Download `ocypus-a40_1.0.0_all.deb`](https://raw.githubusercontent.com/FatihSenturk/ocypus-a40-linux/v1.0.0/packages/ocypus-a40_1.0.0_all.deb), then run
 this command in the folder where you downloaded it:
 
 ```bash
